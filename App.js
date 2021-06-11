@@ -17,6 +17,7 @@ import CompraScreen from './pantallas/Compra';
 import SolicitudesProductoServicioScreen from './pantallas/SolicitudesProductoServicio';
 import DetalleScreen from './pantallas/Detalle';
 import ListaComprasScreen from './pantallas/ListaCompras';
+import PerfilUsuarioBottomScreen from './pantallas/PefilUsuarioBottom';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const myApp = () =>{
         <Stack.Screen name = "Solicitudes Producto/Servicio" component = {SolicitudesProductoServicioScreen}/>
         <Stack.Screen name = "Detalle" component = {DetalleScreen}/>
         <Stack.Screen name = "Lista Compras" component = {ListaComprasScreen}/>
+        <Stack.Screen name = "Pefil Usuario" component = {PerfilUsuarioBottomScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

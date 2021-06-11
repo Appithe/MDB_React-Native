@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {BottomNavigation, Text } from 'react-native-paper';
+import PerfilUsuarioBottom from './PefilUsuarioBottom';
 
 const HomeRoute = () => <Text>Home</Text>;
 
-const PerfilRoute = () => <Text>Perfil</Text>;
+const PerfilRoute = () => <PerfilUsuarioBottom/>;
 
 const CatalogoProductos = ({ navigation }) => {
 
