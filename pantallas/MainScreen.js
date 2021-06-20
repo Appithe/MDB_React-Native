@@ -5,9 +5,9 @@ import PerfilUsuarioBottom from './PefilUsuarioBottom';
 
 const HomeRoute = () => <Text>Home</Text>;
 
-const PerfilRoute = () => <PerfilUsuarioBottom/>;
+const PerfilRoute = () => <PerfilUsuario/>;
 
-const CatalogoProductos = ({ navigation }) => {
+const MainScreen = ({ navigation }) => {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -30,12 +30,7 @@ const CatalogoProductos = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-  }
+  
 });
 
-export default CatalogoProductos
+export default MainScreen
