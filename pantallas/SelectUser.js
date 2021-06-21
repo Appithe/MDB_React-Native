@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     },
     containedButton: {
         marginBottom: 18,
-
         color: "#042741",
         borderColor: "#FFFFFF"
     },
