@@ -23,7 +23,7 @@ const RegistroCliente = ({ navigation }) => {
                 label="Contraseña"
                 style={styles.textInput} />
             <View>
-                <Button style={{ marginTop: 90 }} mode='contained' onPress={() => navigation.navigate('Catalogo de Productos')}>Registrarse</Button>
+                <Button style={{ marginTop: 90 }} mode='contained' onPress={() => navigation.navigate('Home')}>Registrarse</Button>
             </View>
         </View>
     )

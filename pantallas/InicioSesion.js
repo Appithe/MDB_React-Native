@@ -11,15 +11,15 @@ const InicioSesion = ({ navigation }) => {
                 <TextInput
                     left={<TextInput.Icon name="account-circle" />}
                     label="Nombre de usuario"
-                    style={styles.textInput} />
+                    style={{width: 300, margin: 5}} />
                 <TextInput
                     right={<TextInput.Icon name="eye" />}
                     left={<TextInput.Icon name="lock" />}
                     label="Contraseña"
-                    style={styles.textInput} />
+                    style={{width: 300, margin: 5}} />
             </View>
             <View style={styles.containedButton}>
-                <Button mode='contained' onPress={() => navigation.navigate('Catalogo de Productos')}>Iniciar sesión</Button>
+                <Button mode='contained' onPress={() => navigation.navigate('Home')}>Iniciar sesión</Button>
             </View>
             <Divider style={styles.divider} />
             <View style={styles.changePage}>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         margin: 5,
-        selectionColor: Primary.Primary100,
+        //selectionColor: Primary.Primary100,
     },
     containedButton: {
         marginTop: 82,

@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar, ListItem, Button, Icon } from 'react-native-elements';
 import { Title } from 'react-native-paper';
 
+
 import Primary from '../src/utils/Primarycolors';
 
-const Header = () => {
+const Header = ({ navigation }) => {
     return (
         <ListItem containerStyle={styles.header}>
             <Avatar source={require('../src/utils/assets/imagen.jpg')} />
@@ -14,6 +15,7 @@ const Header = () => {
                     <Title style={styles.text}>Nombre de usuario</Title>
                     <Button
                         type="clear"
+                        onPress={() => navigation.navigate('Home 1')}
                         icon={<Icon
                             name='logout'
                             color='#FFF'
@@ -25,11 +27,10 @@ const Header = () => {
     );
 }
 
-const PerfilUsuario = ({ }) => {
+const PerfilUsuario = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Header />
-
             <ListItem containerStyle={styles.subheader}>
                 <ListItem.Title>Compras</ListItem.Title>
             </ListItem>
@@ -37,10 +38,12 @@ const PerfilUsuario = ({ }) => {
                 <Icon
                     name='shopping-cart'
                 />
+                {/* <TouchableOpacity onPress={() => navigation.navigate('Solicitus Producto Servicio')}> */}
                 <ListItem.Content>
-                    <ListItem.Title>Ver Carrito</ListItem.Title>
+                    <ListItem.Title onPress={() => navigation.navigate('Solicitus Producto Servicio')}>Ver Carrito</ListItem.Title>
                 </ListItem.Content>
                 <ListItem.Chevron />
+                {/* </TouchableOpacity> */}
             </ListItem>
             <ListItem>
                 <Icon
