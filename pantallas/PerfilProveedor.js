@@ -1,4 +1,3 @@
-import { List } from '@material-ui/icons';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Avatar, ListItem, Button, Icon } from 'react-native-elements';
@@ -12,7 +11,7 @@ const Header = () => {
             <Avatar source={require('../src/utils/assets/imagen.jpg')} />
             <ListItem.Content>
                 <View style={styles.titleView}>
-                    <Title style={styles.text}>Nombre de usuario</Title>
+                    <Title style={styles.text}>Nombre de proveedor</Title>
                     <Button
                         type="clear"
                         icon={<Icon
@@ -26,7 +25,7 @@ const Header = () => {
     );
 }
 
-const PerfilUsuario = ({ }) => {
+const PerfilProveedor = ({ }) => {
     return (
         <View style={styles.container}>
             <Header />
@@ -35,7 +34,7 @@ const PerfilUsuario = ({ }) => {
             </ListItem>
             <ListItem>
                 <Icon
-                    name='shopping_cart'
+                    name='shopping-cart'
                 />
                 <ListItem.Content>
                     <ListItem.Title>Ver pedidos</ListItem.Title>
@@ -53,7 +52,7 @@ const PerfilUsuario = ({ }) => {
             </ListItem>
             <ListItem>
                 <Icon
-                    name='room_service'
+                    name='room-service'
                 />
                 <ListItem.Content>
                     <ListItem.Title>Agregar servicio</ListItem.Title>
@@ -62,11 +61,11 @@ const PerfilUsuario = ({ }) => {
             </ListItem>
 
             <ListItem containerStyle={styles.subheader}>
-                <ListItem.Title>Genral</ListItem.Title>
+                <ListItem.Title>General</ListItem.Title>
             </ListItem>
             <ListItem>
                 <Icon
-                    name='credit_card'
+                    name='credit-card'
                 />
                 <ListItem.Content>
                     <ListItem.Title>Metodo de pago</ListItem.Title>
@@ -98,4 +97,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PerfilUsuario
+export default PerfilProveedor
