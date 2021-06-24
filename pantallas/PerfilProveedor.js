@@ -11,7 +11,7 @@ const Header = () => {
             <Avatar source={require('../src/utils/assets/imagen.jpg')} />
             <ListItem.Content>
                 <View style={styles.titleView}>
-                    <Title style={styles.text}>Nombre de usuario</Title>
+                    <Title style={styles.text}>Nombre de proveedor</Title>
                     <Button
                         type="clear"
                         icon={<Icon
@@ -25,20 +25,19 @@ const Header = () => {
     );
 }
 
-const PerfilUsuario = ({ }) => {
+const PerfilProveedor = ({ }) => {
     return (
         <View style={styles.container}>
             <Header />
-
             <ListItem containerStyle={styles.subheader}>
-                <ListItem.Title>Compras</ListItem.Title>
+                <ListItem.Title>Producto</ListItem.Title>
             </ListItem>
             <ListItem>
                 <Icon
                     name='shopping-cart'
                 />
                 <ListItem.Content>
-                    <ListItem.Title>Ver Carrito</ListItem.Title>
+                    <ListItem.Title>Ver pedidos</ListItem.Title>
                 </ListItem.Content>
                 <ListItem.Chevron />
             </ListItem>
@@ -47,7 +46,16 @@ const PerfilUsuario = ({ }) => {
                     name='devices'
                 />
                 <ListItem.Content>
-                    <ListItem.Title>Ver Compras anteriores</ListItem.Title>
+                    <ListItem.Title>Agregar producto</ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron />
+            </ListItem>
+            <ListItem>
+                <Icon
+                    name='room-service'
+                />
+                <ListItem.Content>
+                    <ListItem.Title>Agregar servicio</ListItem.Title>
                 </ListItem.Content>
                 <ListItem.Chevron />
             </ListItem>
@@ -89,4 +97,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PerfilUsuario
+export default PerfilProveedor

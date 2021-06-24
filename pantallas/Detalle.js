@@ -1,30 +1,95 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph, Subheading } from 'react-native-paper';
+import { Rating, Button, ListItem, Avatar } from 'react-native-elements';
+import { View, StyleSheet, Text, ScrollView, FlatList } from 'react-native';
+import { Card, Title, Paragraph, Headline, Caption, Subheading } from 'react-native-paper';
 
-import Primary from '../src/utils/Primarycolors';
+const comentsList = [
+    {
+        autorImage: '../src/utils/assets/imagen.jpg',
+        autor: 'Sara',
+        fecha: '13/05/2021',
+        contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor'
+    },
+    {
+        autorImage: '',
+        autor: 'Jonh',
+        fecha: '16/05/2021',
+        contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor'
+    },
+    {
+        autorImage: '',
+        autor: 'Constantine',
+        fecha: '20/05/2021',
+        contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor'
+    },
+]
 
 const Detalle = ({ navigation }) => {
+
+    const item = [
+        {
+            nombre: 'producto',
+            precio: '300.00',
+            image: '../src/utils/assets/imagen.jpg',
+            descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor',
+            rating: 3.5,
+        },
+    ];
+
+    const keyExtractor = (item, index) => index.toString()
+
+    const renderComentarios = ({ item }) => (
+        <ListItem containerStyle={styles.comentario}>
+            <Avatar source={require('../src/utils/assets/imagen.jpg')} />
+            <ListItem.Content>
+                <ListItem.Title style={styles.titleComent}>
+                    <Subheading>{item.autor}</Subheading>
+                    <Caption>{item.fecha}</Caption>
+                </ListItem.Title>
+                <ListItem.Subtitle>{item.contenido}</ListItem.Subtitle>
+            </ListItem.Content>
+        </ListItem>
+    );
+
     return (
         <View style={styles.container}>
-            <View style={{marginTop: 0,}}>
-            <Card style={styles.container}>
-                <Card.Cover size={163} source={require('../src/utils/assets/imagen.jpg')} />
-                <Card.Content style={styles.card}>
-                <Title style={styles.text}>Nombre producto/servicio</Title>
-                <Paragraph style={styles.text2}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</Paragraph>
+            <Card>
+                <Card.Cover style={styles.imageStyle} source={require('../src/utils/assets/imagen.jpg')} />
+                <Card.Content style={styles.itemInfo}>
+                    <Title>Item</Title>
+                    <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor</Paragraph>
+                    <View style={styles.extraInfo}>
+                        <Text style={{ fontSize: 25 }}>$ 300.00</Text>
+                        <Rating
+                            fractions="{5}"
+                            startingValue="{3.5}" />
+                    </View>
                 </Card.Content>
-                <Paragraph style={styles.text2}>      $0000.00</Paragraph>
-                <Card.Content style={styles.card}>
-                <Title style={styles.card2}>Información del proveedor</Title>
-                <Paragraph style={styles.text2}>Nombre proveedor</Paragraph>
-                <Paragraph style={styles.text2}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</Paragraph>
-                <Button style={styles.button} mode="contained">Comprar</Button>
-                <Button style={styles.outbutton} icon="plus" mode="contained">Agregar al carrito</Button>
-                <Subheading style={styles.comentarios}> Comentarios </Subheading>
-                <Subheading style={styles.addComentario}> Agregar comentarios </Subheading>
-                </Card.Content>
+                <Card.Actions style={styles.actionStyles}>
+                    <Button
+                        title="Comprar"
+                    />
+                    <Button
+                        title="Agregar al carrito"
+                        type="outline"
+                    />
+                </Card.Actions>
             </Card>
+            <View>
+                <View style={styles.comentsHeader}>
+                    <Headline style={{color: "#DBB2FF", marginRight: 20}}>Comentarios</Headline>
+                    <Button
+                        title="Agregar comentario"
+                        type="clear"
+                    />
+                </View>
+                <ScrollView>
+                    <FlatList
+                        keyExtractor={keyExtractor}
+                        data={comentsList}
+                        renderItem={renderComentarios}
+                    />
+                </ScrollView>
             </View>
         </View>
     )
@@ -36,67 +101,34 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
     },
-    card: {
-        backgroundColor: "#042741",
-        width: 380,
+    imageStyle: {
+        width: 500,
+        height: 250,
     },
-    text: {
-        position: 'relative',
-        color: Primary.Primary80,
-        marginRight: 80,
-        marginTop: 19,
-        fontSize: 22,
+    itemInfo: {
+        margin: 25,
     },
-    text2: {
-        marginTop: 140,
-        color: "#FFFFFF",
-        fontSize: 14,
-        marginTop: 2,
+    extraInfo: {
+        marginTop: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    avatar: {
-        marginTop: 10,
-        marginBottom: 20,
-        alignItems: "center",
+    actionStyles: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
     },
-    outbutton: {
-        marginTop: 6,
-        width: 210,
-        textAlign: "right",
+    comentsHeader: {
+        margin: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    textInput: {
+    comentario: {
         margin: 5,
-        height: 72,
-        width: 328,
-        color: Primary.Primary100
     },
-    card2: {
-        position: 'relative',
-        color: Primary.Primary100,
-        marginRight: 80,
-        marginTop: 19,
-        fontSize: 22,
-    },
-    containedButton: {
-        marginTop: 20,
-        marginRight: 80,
-        marginTop: 19,
-        fontSize: 22,
-        width: 150,
-    },
-    button: {
-        marginTop: 30,
-        alignItems: "flex-end",
-        width: 105,
-    },
-    comentarios: {
-        marginTop: 20,
-        color: Primary.Primary100
-    },
-    addComentario: {
-        marginTop: 0,
-        textAlign: "right",
-        color: Primary.Primary80
-    },
+    titleComent: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    }
 });
 
 export default Detalle
