@@ -1,52 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, FlatList, ScrollView, View } from 'react-native';
-import { Button, Card, Title } from 'react-native-paper';
-
-const listaCategorias = [
-    {
-        productName: 'Amy Farha',
-        description: 'Vice President',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Chris Jackson',
-        description: 'Vice Chairman',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Amy Farha',
-        description: 'Vice President',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Chris Jackson',
-        description: 'Vice Chairman',
-        image: 'https://picsum.photos/700'
-    },
-]
+import { StyleSheet, FlatList, ScrollView, View} from 'react-native';
+import { Button, Card, Title, Headline } from 'react-native-paper';
+import firebase from '../database/firebase';
 
 const CatProductos = ({ navigation }) => {
 
+    const [productos, setProductos] = useState([]);
+
     const keyExtractor = (item, index) => index.toString();
 
-    const renderItem = ({ item }) => (
-        <Card style={styles.cardStyle}>
-            <Card.Cover source={{ uri: item.image }} />
-            <Card.Title title={item.productName} subtitle={item.description} />
-            <Card.Actions style={styles.cardActionsStyle}>
-                <Button>Ver producto</Button>
-            </Card.Actions>
-        </Card>
+    useEffect(() => {
+        firebase.db.collection('productos').onSnapshot(
+            querySnapshot => {
+
+                const productoslist = [];
+
+                querySnapshot.docs.forEach(doc => {
+                    const {nombre, descripcion, precio} = doc.data();
+                    productoslist.push({
+                        id: doc.id,
+                        nombre,
+                        descripcion,
+                        precio
+                    });
+                });
+
+                setProductos(productoslist);
+            }
+        );
+    }, []);
+
+    const renderItem = () => (
+        productos.map((l, i) => (
+            <Card style={styles.cardStyle}>
+                <Card.Cover source={{ uri: `https://picsum.photos/seed/${i}/200/300` }} />
+                <Card.Title title={l.nombre} subtitle={l.descripcion} />
+                <Card.Content>
+                    <Headline>${l.precio}</Headline>
+                </Card.Content>
+                <Card.Actions style={styles.cardActionsStyle}>
+                    <Button>Ver producto</Button>
+                </Card.Actions>
+            </Card>
+        ))
     );
 
-    const Categoria = ( {categoria} ) => {
+    const Categoria = ({ categoria }) => {
         return (
             <View>
                 <Title style={styles.title}>{categoria}</Title>
                 <FlatList
                     horizontal
                     keyExtractor={keyExtractor}
-                    data={listaCategorias}
+                    data={productos}
                     renderItem={renderItem}
                 />
             </View>
@@ -55,9 +61,7 @@ const CatProductos = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <Categoria categoria='categoria 1'/>
-            <Categoria categoria='categoria 2'/>
-            <Categoria categoria='categoria 3'/>
+            <Categoria categoria='categoria 1' />
         </ScrollView>
     );
 }

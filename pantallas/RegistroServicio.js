@@ -5,7 +5,7 @@ import { TextInput, FAB } from 'react-native-paper';
 
 import firebase from '../database/firebase';
 
-const RegistroProducto = (props) => {
+const RegistroServicio = ({ navigation }) => {
 
     const [item, setItem] = useState({
         nombre: '',
@@ -14,7 +14,7 @@ const RegistroProducto = (props) => {
     });
 
     const handleChangeText = (nombre, value) => {
-        setItem({...item, [nombre]: value})
+        setState({...item, [nombre]: value})
     }
 
     const [expanded, setExpanded] = useState(true);
@@ -26,12 +26,12 @@ const RegistroProducto = (props) => {
             alert('Porfavor coloca el precio del producto');
         } else {
             try {
-                await firebase.db.collection('productos').add({
+                await firebase.db.collection('servicios').add({
                     nombre: item.nombre,
                     descripcion: item.descripcion,
                     precio: item.precio
                 });
-                props.navigation.navigate('MainScreen');
+                navigation.navigate('MainScreen');
             } catch (error) {
                 
             }
@@ -88,15 +88,15 @@ const styles = StyleSheet.create({
     },
     textInput: {
         margin: 15,
-        width: 300
     },
     formContainer: {
         flexDirection: 'column',
     },
     fab: {
         alignSelf: 'flex-end',
+        marginTop: '50%',
         marginRight: '10%'
     }
 });
 
-export default RegistroProducto
+export default RegistroServicio

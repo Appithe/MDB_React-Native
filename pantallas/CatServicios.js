@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, FlatList, ScrollView, View } from 'react-native';
-import { Button, Card, Title } from 'react-native-paper';
-
-const listaCategorias = [
-    {
-        productName: 'Amy Farha',
-        description: 'Vice President',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Chris Jackson',
-        description: 'Vice Chairman',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Amy Farha',
-        description: 'Vice President',
-        image: 'https://picsum.photos/700'
-    },
-    {
-        productName: 'Chris Jackson',
-        description: 'Vice Chairman',
-        image: 'https://picsum.photos/700'
-    },
-]
+import { Button, Card, Title, Headline } from 'react-native-paper';
+import firebase from '../database/firebase';
 
 const CatServicios = ({ navigation }) => {
+    const [servicios, setServicios] = useState([]);
 
     const keyExtractor = (item, index) => index.toString();
 
-    const renderItem = ({ item }) => (
-        <Card style={styles.cardStyle}>
-            <Card.Cover source={{ uri: item.image }} />
-            <Card.Title title={item.productName} subtitle={item.description} />
-            <Card.Actions style={styles.cardActionsStyle}>
-                <Button>Ver producto</Button>
-            </Card.Actions>
-        </Card>
+    useEffect(() => {
+        firebase.db.collection('servicios').onSnapshot(
+            querySnapshot => {
+
+                const productoslist = [];
+
+                querySnapshot.docs.forEach(doc => {
+                    const {nombre, descripcion, precio} = doc.data();
+                    productoslist.push({
+                        id: doc.id,
+                        nombre,
+                        descripcion,
+                        precio
+                    });
+                });
+
+                setServicios(productoslist);
+            }
+        );
+    }, []);
+
+    const renderItem = () => (
+        servicios.map((l, i) => (
+            <Card style={styles.cardStyle}>
+                <Card.Cover source={{ uri: `https://picsum.photos/seed/${i}/200/300` }} />
+                <Card.Title title={l.nombre} subtitle={l.descripcion} />
+                <Card.Content>
+                    <Headline>${l.precio}</Headline>
+                </Card.Content>
+                <Card.Actions style={styles.cardActionsStyle}>
+                    <Button>Ver producto</Button>
+                </Card.Actions>
+            </Card>
+        ))
     );
 
     const Categoria = ( {categoria} ) => {
@@ -46,7 +51,7 @@ const CatServicios = ({ navigation }) => {
                 <FlatList
                     horizontal
                     keyExtractor={keyExtractor}
-                    data={listaCategorias}
+                    data={servicios}
                     renderItem={renderItem}
                 />
             </View>
@@ -56,7 +61,6 @@ const CatServicios = ({ navigation }) => {
     return (
         <ScrollView>
             <Categoria categoria='categoria 1'/>
-            <Categoria categoria='categoria 2'/>
         </ScrollView>
     );
 }

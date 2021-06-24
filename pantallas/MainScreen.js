@@ -17,13 +17,13 @@ const MainScreen = ({ navigation }) => {
   const [routes] = useState([
     { key: 'catProductos', title: 'Productos', icon: 'cart' },
     { key: 'catServicos', title: 'Servicios', icon: 'room-service' },
-    { key: 'perfilUsuario', title: 'Perfil', icon: 'account-circle' },
+    { key: 'proveedorRoute', title: 'Perfil', icon: 'account-circle' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     catProductos: ProductosRoute,
     catServicos: ServicosRoute,
-    perfilUsuario: UsuarioRoute,
+    proveedorRoute: ProveedorRoute,
   });
 
   return (
