@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableHighlight } from 'react-native';
 import { Avatar, ListItem, Button, Icon } from 'react-native-elements';
 import { Title } from 'react-native-paper';
 
 
 import Primary from '../src/utils/Primarycolors';
 
-const Header = ({ navigation }) => {
+const Header = () => {
     return (
         <ListItem containerStyle={styles.header}>
             <Avatar source={require('../src/utils/assets/imagen.jpg')} />
@@ -15,7 +15,7 @@ const Header = ({ navigation }) => {
                     <Title style={styles.text}>Nombre de usuario</Title>
                     <Button
                         type="clear"
-                        onPress={() => navigation.navigate('Home 1')}
+                        onPress={() => console.log('Log out')}
                         icon={<Icon
                             name='logout'
                             color='#FFF'
@@ -34,18 +34,24 @@ const PerfilUsuario = ({ navigation }) => {
             <ListItem containerStyle={styles.subheader}>
                 <ListItem.Title>Compras</ListItem.Title>
             </ListItem>
-            <ListItem>
+            <ListItem
+                Component={TouchableHighlight}
+                onPress={() => navigation.navigate('CompraScreen')}
+                pad={20}
+            >
                 <Icon
                     name='shopping-cart'
                 />
-                {/* <TouchableOpacity onPress={() => navigation.navigate('Solicitus Producto Servicio')}> */}
                 <ListItem.Content>
-                    <ListItem.Title onPress={() => navigation.navigate('Solicitus Producto Servicio')}>Ver Carrito</ListItem.Title>
+                    <ListItem.Title>Ver Carrito</ListItem.Title>
                 </ListItem.Content>
                 <ListItem.Chevron />
-                {/* </TouchableOpacity> */}
             </ListItem>
-            <ListItem>
+            <ListItem
+                Component={TouchableHighlight}
+                onPress={() => navigation.navigate('ListaComprasScreen')}
+                pad={20}
+            >
                 <Icon
                     name='devices'
                 />
@@ -58,7 +64,9 @@ const PerfilUsuario = ({ navigation }) => {
             <ListItem containerStyle={styles.subheader}>
                 <ListItem.Title>General</ListItem.Title>
             </ListItem>
-            <ListItem>
+            <ListItem
+                disabled
+            >
                 <Icon
                     name='credit-card'
                 />

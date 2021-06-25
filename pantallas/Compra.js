@@ -1,33 +1,25 @@
 import React from 'react';
-import { FlatList, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { FlatList, StyleSheet, ScrollView, View, Text, TouchableHighlight } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements'
 import { Button } from 'react-native-paper';
 
 const list = [
     {
+        id: 1,
         nombre: 'producto',
         precio: '300.00',
-        image: '../src/utils/assets/imagen.jpg'
     },
     {
+        id: 2,
         nombre: 'servicio',
         precio: '500.00',
-        image: '../src/utils/assets/imagen.jpg'
     },
     {
+        id: 3,
         nombre: 'producto',
         precio: '300.00',
-        image: '../src/utils/assets/imagen.jpg'
     },
 ]
-
-const deleteItem = () => {
-    console.log('item eliminado');
-}
-
-const goToRecibo = () => {
-    console.log('Cambiado a recibo');
-}
 
 const Compra = ({ navigation }) => {
 
@@ -36,9 +28,12 @@ const Compra = ({ navigation }) => {
     const renderItem = ({ item }) => (
         <ListItem
             containerStyle={styles.items}
-            onPress={goToRecibo(navigation)}
-            onLongPress={deleteItem()}>
-            <Avatar source={require('../src/utils/assets/imagen.jpg')} />
+            onLongPress={() => console.log('item eliminado')}
+            Component={TouchableHighlight}
+            onPress={() => navigation.navigate('ReciboProductoScreen')}
+            pad={20}
+            >
+            <Avatar source={{ uri: `https://picsum.photos/seed/${item.id}/200/300` }} />
             <ListItem.Content>
                 <ListItem.Title>{item.nombre}</ListItem.Title>
                 <ListItem.Subtitle>${item.precio}</ListItem.Subtitle>

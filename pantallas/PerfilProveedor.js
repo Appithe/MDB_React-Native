@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableHighlight } from 'react-native';
 import { Avatar, ListItem, Button, Icon } from 'react-native-elements';
 import { Title } from 'react-native-paper';
 
@@ -17,6 +17,7 @@ const Header = () => {
                         icon={<Icon
                             name='logout'
                             color='#FFF'
+                            onPress={() => console.log('Log out')}
                         />}
                     />
                 </View>
@@ -25,14 +26,18 @@ const Header = () => {
     );
 }
 
-const PerfilProveedor = ({ }) => {
+const PerfilProveedor = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Header />
             <ListItem containerStyle={styles.subheader}>
                 <ListItem.Title>Producto</ListItem.Title>
             </ListItem>
-            <ListItem>
+            <ListItem
+                Component={TouchableHighlight}
+                onPress={() => navigation.navigate('SolicitudesScreen')}
+                pad={20}
+            >
                 <Icon
                     name='shopping-cart'
                 />
@@ -41,7 +46,11 @@ const PerfilProveedor = ({ }) => {
                 </ListItem.Content>
                 <ListItem.Chevron />
             </ListItem>
-            <ListItem>
+            <ListItem
+                Component={TouchableHighlight}
+                onPress={() => navigation.navigate('RegistroProductoScreen')}
+                pad={20}
+            >
                 <Icon
                     name='devices'
                 />
@@ -50,7 +59,11 @@ const PerfilProveedor = ({ }) => {
                 </ListItem.Content>
                 <ListItem.Chevron />
             </ListItem>
-            <ListItem>
+            <ListItem
+                Component={TouchableHighlight}
+                onPress={() => navigation.navigate('RegistroServicioScreen')}
+                pad={20}
+            >
                 <Icon
                     name='room-service'
                 />
@@ -63,7 +76,9 @@ const PerfilProveedor = ({ }) => {
             <ListItem containerStyle={styles.subheader}>
                 <ListItem.Title>General</ListItem.Title>
             </ListItem>
-            <ListItem>
+            <ListItem
+                disabled
+            >
                 <Icon
                     name='credit-card'
                 />
