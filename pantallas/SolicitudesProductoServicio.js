@@ -1,19 +1,22 @@
 import React from 'react';
-import { FlatList, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { FlatList, StyleSheet, ScrollView, View, Text, TouchableHighlight } from 'react-native';
 import { ListItem, Avatar, Button } from 'react-native-elements'
 
 const list = [
     {
+        id: 1,
         nombre: 'producto',
         precio: '300.00',
         image: '../src/utils/assets/imagen.jpg'
     },
     {
+        id: 2,
         nombre: 'servicio',
         precio: '500.00',
         image: '../src/utils/assets/imagen.jpg'
     },
     {
+        id: 3,
         nombre: 'producto',
         precio: '300.00',
         image: '../src/utils/assets/imagen.jpg'
@@ -26,8 +29,12 @@ const SolicitudesProductoServicio = ({ navigation }) => {
 
     const renderItem = ({ item }) => (
         <ListItem
-            containerStyle={styles.items}>
-            <Avatar source={require('../src/utils/assets/imagen.jpg')} />
+            containerStyle={styles.items}
+            Component={TouchableHighlight}
+            onPress={() => navigation.navigate('DetalleScreen')}
+            pad={20}
+        >
+            <Avatar source={{ uri: `https://picsum.photos/seed/${item.id}/200/300` }} />
             <ListItem.Content>
                 <ListItem.Title>{item.nombre}</ListItem.Title>
                 <ListItem.Subtitle>${item.precio}</ListItem.Subtitle>

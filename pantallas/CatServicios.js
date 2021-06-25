@@ -32,13 +32,15 @@ const CatServicios = ({ navigation }) => {
     const renderItem = () => (
         servicios.map((l, i) => (
             <Card style={styles.cardStyle}>
-                <Card.Cover source={{ uri: `https://picsum.photos/seed/${i}/200/300` }} />
+                <Card.Cover source={{ uri: `https://picsum.photos/seed/${l.id}/200/300` }} />
                 <Card.Title title={l.nombre} subtitle={l.descripcion} />
                 <Card.Content>
                     <Headline>${l.precio}</Headline>
                 </Card.Content>
                 <Card.Actions style={styles.cardActionsStyle}>
-                    <Button>Ver producto</Button>
+                    <Button
+                        onPress={()=> navigation.navigate('DetalleScreen')}
+                    >Ver producto</Button>
                 </Card.Actions>
             </Card>
         ))
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     cardStyle: {
         margin: 10,
         width: 180,
-        height: 300
+        height: 350
     },
     cardActionsStyle: {
         justifyContent: 'center',

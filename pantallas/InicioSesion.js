@@ -19,12 +19,12 @@ const InicioSesion = ({ navigation }) => {
                     style={{width: 300, margin: 5}} />
             </View>
             <View style={styles.containedButton}>
-                <Button mode='contained' onPress={() => navigation.navigate('Home')}>Iniciar sesión</Button>
+                <Button mode='contained' onPress={() => navigation.navigate('MainScreen')}>Iniciar sesión</Button>
             </View>
             <Divider style={styles.divider} />
             <View style={styles.changePage}>
                 <Subheading style={styles.text}>Nuevo usuario?</Subheading>
-                <Button mode='text' onPress={() => navigation.navigate('Tipo de usuario')}>
+                <Button mode='text' onPress={() => navigation.navigate('SelectUserScreen')}>
                     <Caption style={{ color: Primary.Primary200 }}>Crear una cuenta</Caption>
                 </Button>
             </View>

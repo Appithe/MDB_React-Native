@@ -9,8 +9,8 @@ const SelectUser = ({navigation}) =>{
 
             <Avatar.Text style={styles.avatar} size={163} label="MB" />
 
-            <Button style={styles.containedButton} mode='contained' onPress = {()=>navigation.navigate('Registro de Proveedor')}>Cuenta del proveedor</Button>
-            <Button style={styles.containedButton} mode='contained' onPress = {()=>navigation.navigate('Registro de Cliente')}>Cuenta del cliente</Button>
+            <Button style={styles.containedButton} mode='contained' onPress = {()=>navigation.navigate('RegistroProveedorScreen')}>Cuenta del proveedor</Button>
+            <Button style={styles.containedButton} mode='contained' onPress = {()=>navigation.navigate('RegistroClienteScreen')}>Cuenta del cliente</Button>
         </View>
     )
 }

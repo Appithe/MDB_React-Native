@@ -11,8 +11,8 @@ const Home = ({ navigation }) => {
 
             <Avatar.Image style={styles.avatar} size={163} source={require('../src/utils/assets/imagen.jpg')}/>
 
-            <Button mode='contained' onPress={() => navigation.navigate('Inicio de Sesion')}>Inicio de sesión</Button>
-            <Button mode='outlined' color={Primary.Primary200} style={styles.outbutton} onPress={() => navigation.navigate('Tipo de usuario')}>Crear cuenta</Button>
+            <Button mode='contained' onPress={() => navigation.navigate('LoginScreen')}>Inicio de sesión</Button>
+            <Button mode='outlined' color={Primary.Primary200} style={styles.outbutton} onPress={() => navigation.navigate('SelectUserScreen')}>Crear cuenta</Button>
         </View>
     )
 }
