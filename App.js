@@ -26,9 +26,9 @@ const myApp = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Mercadito de bolsillo' }} />
         <Stack.Screen name="CatServiciosScreen" component={CatServiciosScreen} options={{ title: 'Catalogo de servicios' }} />
         <Stack.Screen name="CompraScreen" component={CompraScreen} options={{ title: 'Tu carro de compra' }} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Mercadito de bolsillo' }} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: 'Inicio de sesion' }} />
         <Stack.Screen name="SelectUserScreen" component={SelectUserScreen} options={{ title: 'Tipo de usuario' }} />
         <Stack.Screen name="SolicitudesScreen" component={SolicitudesScreen} options={{ title: 'Solicitudes de compra' }} />
